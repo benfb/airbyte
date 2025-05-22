@@ -196,6 +196,14 @@
         "order": 13,
         "group": "advanced"
       },
+      "render_uuids_from_binary": {
+        "type": "boolean",
+        "title": "Render UUIDs from Binary (Advanced)",
+        "description": "When enabled, binary fields with UUID subtypes will be rendered as UUID strings instead of base64-encoded binary data.",
+        "default": false,
+        "order": 14,
+        "group": "advanced"
+      },
       "initial_load_timeout_hours": {
         "type": "integer",
         "title": "Initial Load Timeout in Hours (Advanced)",
@@ -203,7 +211,7 @@
         "default": 8,
         "min": 4,
         "max": 24,
-        "order": 14,
+        "order": 15,
         "group": "advanced"
       }
     },
