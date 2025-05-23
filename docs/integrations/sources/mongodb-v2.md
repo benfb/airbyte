@@ -200,7 +200,7 @@ For more information regarding configuration parameters, please see [MongoDb Doc
 
 | Version | Date       | Pull Request                                               | Subject                                                                                                   |
 |:--------|:-----------|:-----------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
-| 1.5.19 | 2025-05-22 | [58xxx](https://github.com/airbytehq/airbyte/pull/58xxx)   | Add option to render UUIDs from binary fields with UUID subtypes |
+| 1.6.0 | 2025-05-23 | [58xxx](https://github.com/airbytehq/airbyte/pull/58xxx)   | Add option to render UUIDs from binary fields with UUID subtypes |
 | 1.5.18 | 2025-04-24 | [58132](https://github.com/airbytehq/airbyte/pull/58132)   | Fix vulnerabilities in dependencies. |
 | 1.5.17 | 2025-04-17 | [58111](https://github.com/airbytehq/airbyte/pull/58111)   | Implement timeout for document discovery                                                                  |
 | 1.5.16 | 2025-04-02 | [56973](https://github.com/airbytehq/airbyte/pull/56973)   | Update logging configuration.                                                                             |
