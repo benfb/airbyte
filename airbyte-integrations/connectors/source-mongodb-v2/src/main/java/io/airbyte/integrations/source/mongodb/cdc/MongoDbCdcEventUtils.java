@@ -296,9 +296,7 @@ public class MongoDbCdcEventUtils {
       return null;
     }
     
-    // Check if we should render UUIDs from binary data
     if (renderUuidFromBinary) {
-      // Handle all UUID subtypes
       if (value.getType() == BsonBinarySubType.UUID_STANDARD.getValue()) {
         return UuidHelper.decodeBinaryToUuid(value.getData(), value.getType(), UuidRepresentation.STANDARD).toString();
       } else if (value.getType() == BsonBinarySubType.UUID_LEGACY.getValue()) {
@@ -306,7 +304,7 @@ public class MongoDbCdcEventUtils {
       }
     }
     
-    // Convert byte array to Base64 string for JSON compatibility
+    // Convert byte array to Base64 string if not a UUID
     return Base64.getEncoder().encodeToString(value.getData());
   }
 

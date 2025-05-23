@@ -82,6 +82,5 @@ class MongoDbSourceConfigTest {
     assertEquals(DEFAULT_DISCOVER_SAMPLE_SIZE, sourceConfig.getSampleSize());
     assertEquals(null, sourceConfig.getUsername());
   }
-  
 
 }
