@@ -258,10 +258,6 @@ public class MongoDbStateManager implements SourceStateMessageProducer<Document>
   public AirbyteMessage processRecordMessage(final ConfiguredAirbyteStream stream, final Document document) {
     final var fields = CatalogHelpers.getTopLevelFieldNames(stream).stream().collect(Collectors.toSet());
 
-    // Log the configuration for debugging
-    LOGGER.info("MongoDbStateManager.processRecordMessage: renderUuidFromBinary = {}, isEnforceSchema = {}", 
-                renderUuidFromBinary, isEnforceSchema);
-
     final var jsonNode = isEnforceSchema ? MongoDbCdcEventUtils.toJsonNode(document, fields, renderUuidFromBinary) : MongoDbCdcEventUtils.toJsonNodeNoSchema(document, renderUuidFromBinary);
 
     final var lastId = document.get(MongoConstants.ID_FIELD);

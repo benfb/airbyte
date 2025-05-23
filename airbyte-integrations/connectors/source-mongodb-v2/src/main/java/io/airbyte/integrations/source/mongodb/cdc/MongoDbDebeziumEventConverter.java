@@ -59,12 +59,6 @@ public class MongoDbDebeziumEventConverter implements DebeziumEventConverter {
     // Get the renderUuidFromBinary flag from the configuration
     final boolean renderUuidFromBinary = config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY) && 
                                          config.get(MongoConstants.RENDER_UUIDS_FROM_BINARY).asBoolean();
-    
-    // Log the configuration for debugging
-    LOGGER.info("MongoDbDebeziumEventConverter: renderUuidFromBinary setting = {}, config has key = {}, config value = {}", 
-                renderUuidFromBinary, 
-                config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY),
-                config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY) ? config.get(MongoConstants.RENDER_UUIDS_FROM_BINARY) : "N/A");
 
     final JsonNode data = switch (operation) {
       case "c", "i", "u" -> formatMongoDbDebeziumData(
