@@ -53,6 +53,7 @@ public class MongoDbDebeziumEventConverter implements DebeziumEventConverter {
      * #formatMongoDbDeleteDebeziumData() for more details.
      */
     // Get the renderUuidFromBinary flag from the configuration
+    // When enabled, binary fields with UUID subtypes will be rendered as UUID strings
     final boolean renderUuidFromBinary = config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY) && 
                                          config.get(MongoConstants.RENDER_UUIDS_FROM_BINARY).asBoolean();
 
