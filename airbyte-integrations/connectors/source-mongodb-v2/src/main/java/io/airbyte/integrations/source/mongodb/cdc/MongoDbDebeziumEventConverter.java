@@ -15,8 +15,12 @@ import io.airbyte.protocol.models.v0.ConfiguredAirbyteCatalog;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MongoDbDebeziumEventConverter implements DebeziumEventConverter {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MongoDbDebeziumEventConverter.class);
 
   private final CdcMetadataInjector cdcMetadataInjector;
   private final ConfiguredAirbyteCatalog configuredAirbyteCatalog;
@@ -55,6 +59,12 @@ public class MongoDbDebeziumEventConverter implements DebeziumEventConverter {
     // Get the renderUuidFromBinary flag from the configuration
     final boolean renderUuidFromBinary = config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY) && 
                                          config.get(MongoConstants.RENDER_UUIDS_FROM_BINARY).asBoolean();
+    
+    // Log the configuration for debugging
+    LOGGER.info("MongoDbDebeziumEventConverter: renderUuidFromBinary setting = {}, config has key = {}, config value = {}", 
+                renderUuidFromBinary, 
+                config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY),
+                config.has(MongoConstants.RENDER_UUIDS_FROM_BINARY) ? config.get(MongoConstants.RENDER_UUIDS_FROM_BINARY) : "N/A");
 
     final JsonNode data = switch (operation) {
       case "c", "i", "u" -> formatMongoDbDebeziumData(

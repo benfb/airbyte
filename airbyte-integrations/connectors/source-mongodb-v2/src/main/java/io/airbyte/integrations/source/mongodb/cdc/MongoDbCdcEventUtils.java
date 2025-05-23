@@ -296,16 +296,25 @@ public class MongoDbCdcEventUtils {
       return null;
     }
     
+    LOGGER.info("formatBinaryData: renderUuidFromBinary = {}, binary type = {}, data length = {}", 
+                renderUuidFromBinary, value.getType(), value.getData().length);
+    
     if (renderUuidFromBinary) {
       if (value.getType() == BsonBinarySubType.UUID_STANDARD.getValue()) {
-        return UuidHelper.decodeBinaryToUuid(value.getData(), value.getType(), UuidRepresentation.STANDARD).toString();
+        final String uuid = UuidHelper.decodeBinaryToUuid(value.getData(), value.getType(), UuidRepresentation.STANDARD).toString();
+        LOGGER.info("formatBinaryData: Converting UUID_STANDARD binary to UUID string: {}", uuid);
+        return uuid;
       } else if (value.getType() == BsonBinarySubType.UUID_LEGACY.getValue()) {
-        return UuidHelper.decodeBinaryToUuid(value.getData(), value.getType(), UuidRepresentation.JAVA_LEGACY).toString();
+        final String uuid = UuidHelper.decodeBinaryToUuid(value.getData(), value.getType(), UuidRepresentation.JAVA_LEGACY).toString();
+        LOGGER.info("formatBinaryData: Converting UUID_LEGACY binary to UUID string: {}", uuid);
+        return uuid;
       }
     }
     
     // Convert byte array to Base64 string if not a UUID
-    return Base64.getEncoder().encodeToString(value.getData());
+    final String base64 = Base64.getEncoder().encodeToString(value.getData());
+    LOGGER.info("formatBinaryData: Converting binary to Base64 string: {}", base64);
+    return base64;
   }
 
   private static void readNull(final ObjectNode o, final BsonReader reader, final String fieldName) {
